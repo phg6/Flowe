@@ -1,0 +1,93 @@
+{
+  "name": "flowe",
+  "version": "7.14.13",
+  "description": "Write everything faster.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "webpack -c webpack.test.js && node test/test-server.js",
+    "setup": "echo 'No setup needed. Create .supabase-config-production.json with url and anonKey.'",
+    "start": "webpack -w --mode=development --env mode=development",
+    "start:firefox:android": "web-ext run --source-dir ./ext/ -t firefox-android",
+    "staging": "webpack -w --mode=production --env mode=staging",
+    "build": "webpack --mode=production --env mode=production",
+    "sourcebuild": "git archive --format zip --output sourcebuild/sourcebuild-${npm_package_version}.zip HEAD; zip -u sourcebuild/sourcebuild-${npm_package_version}.zip .firebase-config-production.json",
+    "lint": "eslint",
+    "playwright:firefox": "npm run build -- manifest=2 && playwright test --project=firefox",
+    "playwright:chrome": "npm run build && playwright test --project=chromium",
+    "playwright:run": "npm run playwright:firefox && npm run playwright:chrome",
+    "release": "npm run lint && npm test && npm run playwright:run && npm run sourcebuild",
+    "prisma:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio"
+  },
+  "repository": "https://github.com/briskine/briskine/",
+  "author": "Alexandru Plugaru <alex@gorgias.com>",
+  "contributors": [
+    {
+      "name": "Ionut Colceriu",
+      "email": "contact@ghinda.net"
+    },
+    {
+      "name": "Alex Bumbu",
+      "email": "bmbalex@gmail.com"
+    },
+    {
+      "name": "Martin Latrille",
+      "email": "martin@gorgias.com"
+    },
+    {
+      "name": "Hadrien de Lamotte",
+      "email": "hadrien.lamotte@gmail.com"
+    }
+  ],
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "@babel/core": "^7.24.7",
+    "@babel/preset-env": "^7.27.2",
+    "@eslint/js": "^9.2.0",
+    "@playwright/test": "^1.42.1",
+    "@stylistic/eslint-plugin": "^5.0.0",
+    "@svgr/webpack": "^8.1.0",
+    "@types/node": "^24.0.0",
+    "archiver": "^7.0.0",
+    "babel-loader": "^10.0.0",
+    "babel-preset-solid": "^1.8.18",
+    "chai": "^5.0.0",
+    "copy-webpack-plugin": "^13.0.0",
+    "core-js": "^3.42.0",
+    "css-loader": "^7.0.0",
+    "css-minimizer-webpack-plugin": "^7.0.0",
+    "dotenv": "^17.0.0",
+    "eslint": "^9.0.0",
+    "eslint-plugin-solid": "^0.14.1",
+    "glob": "^11.0.0",
+    "globals": "^16.0.0",
+    "http-server": "^14.1.1",
+    "mini-css-extract-plugin": "^2.0.0",
+    "mocha": "^11.0.0",
+    "mockdate": "^3.0.2",
+    "prisma": "^5.19.1",
+    "puppeteer": "^24.0.0",
+    "purgecss-webpack-plugin": "^7.0.0",
+    "web-ext": "^8.0.0",
+    "webpack": "^5.11.1",
+    "webpack-cli": "^6.0.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.15.0",
+    "@supabase/supabase-js": "^2.45.4",
+    "@webcomponents/custom-elements": "^1.4.3",
+    "bootstrap": "^5.3.0",
+    "bootstrap-icons": "^1.10.3",
+    "fuse.js": "^7.0.0",
+    "handlebars": "^4.5.3",
+    "html-to-text": "^9.0.0",
+    "lodash.debounce": "^4.0.8",
+    "lodash.isequal": "^4.5.0",
+    "moment": "^2.29.1",
+    "mousetrap": "github:briskine/mousetrap#master",
+    "solid-js": "^1.8.18",
+    "webextension-polyfill": "^0.12.0"
+  }
+}

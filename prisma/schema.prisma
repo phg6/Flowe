@@ -1,0 +1,43 @@
+// Prisma schema for Supabase (Postgres)
+// Set DATABASE_URL env var to your Supabase connection string when running prisma commands
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id         String   @id @db.Uuid
+  email      String   @unique
+  full_name  String?
+  customers  String[] @db.Uuid
+  settings   Json?
+}
+
+model customers {
+  id           String   @id @db.Uuid
+  members      String[] @db.Uuid
+  subscription Json?
+}
+
+model tags {
+  id        String @id @db.Uuid
+  customer  String @db.Uuid
+  title     String
+}
+
+model templates {
+  id               String   @id @db.Uuid
+  customer         String   @db.Uuid
+  owner            String   @db.Uuid
+  deleted_datetime DateTime?
+  sharing          String   // 'everyone' | 'custom'
+  shared_with      String[] @db.Uuid
+  body             String   // HTML
+  created_datetime DateTime?
+  modified_datetime DateTime?
+}

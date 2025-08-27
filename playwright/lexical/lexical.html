@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div id="lexical-container"></div>
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://esm.sh/react@19/?dev",
+          "react-dom": "https://esm.sh/react-dom@19/client?dev",
+          "@lexical/react/LexicalComposer": "https://esm.sh/@lexical/react@0.30/LexicalComposer/?dev",
+          "@lexical/react/LexicalPlainTextPlugin": "https://esm.sh/@lexical/react@0.30/LexicalPlainTextPlugin/?dev",
+          "@lexical/react/LexicalContentEditable": "https://esm.sh/@lexical/react@0.30/LexicalContentEditable/?dev"
+        }
+      }
+    </script>
+    <script type="module">
+      import {createElement} from 'react'
+      import {createRoot} from 'react-dom'
+
+      import {LexicalComposer} from '@lexical/react/LexicalComposer'
+      import {PlainTextPlugin} from '@lexical/react/LexicalPlainTextPlugin'
+      import {ContentEditable} from '@lexical/react/LexicalContentEditable'
+
+      function Editor () {
+        const initialConfig = {
+          namespace: 'MyEditor',
+          onError: console.error,
+        }
+
+        return createElement(LexicalComposer, {
+          initialConfig: initialConfig,
+        }, createElement(PlainTextPlugin, {
+          contentEditable: createElement(ContentEditable),
+        }))
+      }
+
+      const root = createRoot(document.getElementById('lexical-container'))
+      root.render(createElement(Editor))
+    </script>
+  </body>
+</html>

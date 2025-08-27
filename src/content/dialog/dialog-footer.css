@@ -1,0 +1,53 @@
+.dialog-footer {
+  position: relative;
+  z-index: 2;
+  padding: var(--padding-y) var(--padding-x);
+  background: var(--background-color-highlight);
+  border-top: 1px solid var(--border-color);
+
+}
+
+.dialog-shortcut {
+  display: none;
+
+  font-size: .8em;
+  font-weight: bold;
+  text-align: right;
+  cursor: default;
+}
+
+@media (min-width: 992px) {
+  .dialog-shortcut {
+    display: inline-block;
+  }
+}
+
+/* actions
+ */
+.btn-actions {
+  display: inline-block;
+  padding: 1px;
+}
+
+.btn-actions svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+/* show modals
+ */
+.briskine-dialog[modal=settings] .dialog-settings,
+.briskine-dialog[modal=actions] .dialog-actions {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.briskine-dialog[modal=settings] .btn-settings {
+  background: var(--border-color);
+}
+
+.briskine-dialog[modal=actions] .btn-actions {
+  background-color: var(--primary-color);
+}

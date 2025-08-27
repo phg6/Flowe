@@ -1,0 +1,32 @@
+node_modules
+selenium
+chrome_profile
+*.log
+build
+sourcebuild
+.env
+
+# chrome extension
+tmp/
+ext/
+*.pem
+*.pub
+*.crx
+*.nex
+
+# xcode
+.DS_Store
+xcuserdata/
+
+# tests
+test/bundle
+test/pages
+
+# firebase config, for firefox reviewers
+.firebase-config*.json
+
+# playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
